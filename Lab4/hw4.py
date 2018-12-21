@@ -4,11 +4,13 @@ import matplotlib.pyplot as plt
 from scipy.io import loadmat
 
 #Be careful with the file path!
-data = loadmat('data/hw4.mat')
+data = loadmat('data/hw4.mat') # type(data) = dict
+#print(data['X'].size) = 5000 * 400 data['X'] type:numpy.ndarray
+#print(data['y'].size) = 5000
 from sklearn.preprocessing import OneHotEncoder
 encoder = OneHotEncoder(sparse=False)
 y_onehot = encoder.fit_transform(data['y'])
-    
+'''
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
     
@@ -25,7 +27,7 @@ def forward_propagate(X, theta1, theta2):
     return a1, z2, a2, z3, h
     
 def cost(params, input_size, hidden_size, num_labels, X, y, learning_rate):
-    m = X.shape[0]
+    m = X.shape[0] # 5000
     X = np.matrix(X)
     y = np.matrix(y)
     # reshape the parameter array into parameter matrices for each layer
@@ -84,3 +86,4 @@ y_pred = np.array(np.argmax(h, axis=1) + 1)
 correct = [1 if a == b else 0 for (a, b) in zip(y_pred, y)]
 accuracy = (sum(map(int, correct)) / float(len(correct)))
 print ('accuracy = {0}%'.format(accuracy * 100))
+'''
