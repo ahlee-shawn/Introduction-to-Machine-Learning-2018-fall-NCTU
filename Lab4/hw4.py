@@ -20,8 +20,8 @@ def forward_propagate(X, theta1, theta2):
     #Write codes here
     a1 = X
     theta1_tranpose = theta1.transpose()
-    theta1_bias = theta1_tranpose[theta1_tranpose.shape[0] - 1]
-    theta1_tranpose = np.delete(theta1_tranpose, theta1_tranpose.shape[0] - 1, axis=0)
+    theta1_bias = theta1_tranpose[0]
+    theta1_tranpose = np.delete(theta1_tranpose, 0, axis=0)
     z2 = np.dot(X, theta1_tranpose)
     for i in range(0, X.shape[0]):
         z2[i] = z2[i] + theta1_bias
@@ -29,8 +29,8 @@ def forward_propagate(X, theta1, theta2):
     vectorized_activate = np.vectorize(activate)
     a2 = vectorized_activate(z2)
     theta2_tranpose = theta2.transpose()
-    theta2_bias = theta2_tranpose[theta2_tranpose.shape[0] - 1]
-    theta2_tranpose = np.delete(theta2_tranpose, theta2_tranpose.shape[0] - 1, axis=0)
+    theta2_bias = theta2_tranpose[0]
+    theta2_tranpose = np.delete(theta2_tranpose, 0, axis=0)
     z3 = np.dot(a2, theta2_tranpose)
     for i in range(0, a2.shape[0]):
         z3[i] = z3[i] + theta2_bias
