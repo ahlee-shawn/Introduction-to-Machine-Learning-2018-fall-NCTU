@@ -18,8 +18,7 @@ def forward_propagate(X, theta1, theta2):
     #Write codes here
     activate = lambda i : sigmoid(i)
     vectorized_activate = np.vectorize(activate)
-    #bias = np.array(np.ones(m), ndmin=2).transpose()
-    bias = np.ones((5000, 1))
+    bias = np.ones((m, 1))
     a1 = np.concatenate((bias, X), axis=1)
     z2 = np.dot(a1, theta1.transpose())
     a2 = np.concatenate((bias, vectorized_activate(z2)), axis=1)
@@ -112,7 +111,7 @@ def backprop(params, input_size, hidden_size, num_labels, X, y, learning_rate):
     
 from scipy.optimize import minimize
 # minimize the objective function
-fmin = minimize(fun=backprop, x0=params, args=(input_size, hidden_size, num_labels, X, y_onehot, learning_rate), method='TNC', jac=True, options={'maxiter': 250, 'disp': True})
+fmin = minimize(fun=backprop, x0=params, args=(input_size, hidden_size, num_labels, X, y_onehot, learning_rate), method='TNC', jac=True, options={'maxiter': 250})
 print(fmin)
       
 X = np.matrix(X)
